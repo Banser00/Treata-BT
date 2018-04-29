@@ -12,7 +12,7 @@ public class CoVast3Activity extends AppCompatActivity implements View.OnClickLi
     private ImageView vast3sss,vast3ddd,play3,vast3;
     AnimationDrawable anim3;
     MediaPlayer song3;
-
+    int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +55,18 @@ public class CoVast3Activity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void play3it(View view) {
-        song3.start();
-        anim3.start();
+        if(counter%2==0) {
+            song3.start();
+            anim3.start();
+        }
+        else {
+            song3.stop();
+            anim3.stop();
+        }
+
         if (BTActivity.mConnectedThread != null) //First check to make sure thread created
             BTActivity.mConnectedThread.write("3");
+        counter++;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class RaVast2Activity extends AppCompatActivity implements View.OnClickLi
     private ImageView vast2sss,vast2ddd,play2,vast2;
     AnimationDrawable anim2;
     MediaPlayer song2;
-
+    int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +56,17 @@ public class RaVast2Activity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void play2it(View view) {
-        song2.start();
-        anim2.start();
+        if(counter%2==0) {
+            song2.start();
+            anim2.start();
+        }
+        else{
+            song2.stop();
+            anim2.stop();
+        }
         if (BTActivity.mConnectedThread != null) //First check to make sure thread created
             BTActivity.mConnectedThread.write("2");
+        counter++;
     }
 
     @Override

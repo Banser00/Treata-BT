@@ -16,14 +16,14 @@ public class RaVastActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView vastsss,vastddd,play,vast;
     AnimationDrawable anim;
     MediaPlayer song;
-
+    int counter = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vast);
-
+        int counter = 0;
         song = MediaPlayer.create(RaVastActivity.this,R.raw.littlestar);
 
         //set vast animation
@@ -61,10 +61,17 @@ public class RaVastActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void playit(View view) {
-        song.start();
-        anim.start();
+        if(counter%2==0) {
+            song.start();
+            anim.start();
+        }
+        else{
+            song.stop();
+            anim.stop();
+        }
         if (BTActivity.mConnectedThread != null) //First check to make sure thread created
             BTActivity.mConnectedThread.write("1");
+        counter++;
     }
 
     @Override

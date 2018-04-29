@@ -12,7 +12,7 @@ public class Vast4Activity extends AppCompatActivity implements View.OnClickList
     private ImageView vast4sss,vast4ddd,play4,vast4;
     AnimationDrawable anim4;
     MediaPlayer song4;
-
+    int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +54,17 @@ public class Vast4Activity extends AppCompatActivity implements View.OnClickList
     }
 
     public void play4it(View view) {
-        song4.start();
-        anim4.start();
+        if(counter%2==0) {
+            song4.start();
+            anim4.start();
+        }
+        else{
+            song4.stop();
+            anim4.stop();
+        }
         if (BTActivity.mConnectedThread != null) //First check to make sure thread created
             BTActivity.mConnectedThread.write("4");
+        counter++;
     }
 
     @Override

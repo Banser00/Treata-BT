@@ -16,7 +16,7 @@ public class CoVastActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView vastsss,vastddd,play,vast;
     AnimationDrawable anim;
     MediaPlayer song;
-
+    int counter = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -61,10 +61,18 @@ public class CoVastActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void playit(View view) {
-        song.start();
-        anim.start();
+        if(counter%2==0) {
+            song.start();
+            anim.start();
+        }
+        else {
+            song.stop();
+            anim.stop();
+        }
         if (BTActivity.mConnectedThread != null) //First check to make sure thread created
             BTActivity.mConnectedThread.write("1");
+
+        counter++;
     }
 
     @Override
